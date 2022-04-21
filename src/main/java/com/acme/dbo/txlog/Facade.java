@@ -1,7 +1,5 @@
 package com.acme.dbo.txlog;
 
-import java.util.Objects;
-
 import static com.acme.dbo.txlog.LogMessageDecorator.decorate;
 
 public class Facade {
