@@ -10,11 +10,13 @@ public class Facade {
     private static String stringTemplate = null;
 
     public static void log(Boolean message) {
+        flush();
         String logString = decorate(message);
         logString(logString);
     }
 
     public static void log(Byte message) {
+        flush();
         String logString = decorate(message);
         logString(logString);
     }
@@ -29,6 +31,7 @@ public class Facade {
     }
 
     public static void log(Character message) {
+        flush();
         String logString = decorate(message);
         logString(logString);
     }
@@ -44,6 +47,7 @@ public class Facade {
     }
 
     public static void log(Object message) {
+        flush();
         String logString = decorate(message);
         logString(logString);
     }
