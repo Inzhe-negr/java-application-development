@@ -1,6 +1,6 @@
 package com.acme.dbo.txlog.messages;
 
-public class IntMessage extends CommonMessage {
+public class IntMessage extends AbstractMessage {
     private int value;
 
     public IntMessage(int message) {

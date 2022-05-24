@@ -1,6 +1,6 @@
 package com.acme.dbo.txlog.messages;
 
-public class CommonMessage implements Message{
+public class AbstractMessage implements Message{
     @Override
     public String decorate() {
         return null;

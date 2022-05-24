@@ -1,6 +1,6 @@
 package com.acme.dbo.txlog.messages;
 
-public class ByteMessage extends CommonMessage {
+public class ByteMessage extends AbstractMessage {
     private final Byte value;
 
     public ByteMessage(Byte message) {

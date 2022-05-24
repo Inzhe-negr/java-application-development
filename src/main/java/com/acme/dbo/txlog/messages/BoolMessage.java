@@ -1,6 +1,6 @@
 package com.acme.dbo.txlog.messages;
 
-public class BoolMessage extends CommonMessage {
+public class BoolMessage extends AbstractMessage {
     private final boolean value;
 
     public BoolMessage(boolean message) {

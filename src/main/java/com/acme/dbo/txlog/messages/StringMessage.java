@@ -1,6 +1,6 @@
 package com.acme.dbo.txlog.messages;
 
-public class StringMessage extends CommonMessage {
+public class StringMessage extends AbstractMessage {
     private int templatesCount;
     private final String value;
 
