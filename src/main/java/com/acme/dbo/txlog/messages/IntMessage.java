@@ -1,6 +1,6 @@
 package com.acme.dbo.txlog.messages;
 
-public class IntMessage extends AbstractMessage {
+public class IntMessage implements Message {
     private int value;
 
     public IntMessage(int message) {
@@ -8,19 +8,19 @@ public class IntMessage extends AbstractMessage {
     }
 
     @Override
-    public String flush() {
-        return "primitive: " + value;
+    public void accumulate(Message message) {
+        if (isAccumulated(message)) {
+            value += ((IntMessage) message).value;
+        }
     }
 
     @Override
-    public String accumulate(Message message) {
-        if (this.getClass() == message.getClass()) {
-            IntMessage oldMessage = (IntMessage) message;
-            if (oldMessage.value <= Integer.MAX_VALUE - value) {
-                value += oldMessage.value;
-                return null;
-            }
-        }
-        return message.flush();
+    public boolean isAccumulated(Message message) {
+        return message instanceof IntMessage && ((IntMessage) message).value <= Integer.MAX_VALUE - value;
+    }
+
+    @Override
+    public String decorate() {
+        return "primitive: " + value;
     }
 }

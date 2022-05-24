@@ -1,6 +1,6 @@
 package com.acme.dbo.txlog.messages;
 
-public class StringMessage extends AbstractMessage {
+public class StringMessage implements Message {
     private int templatesCount;
     private final String value;
 
@@ -10,20 +10,21 @@ public class StringMessage extends AbstractMessage {
     }
 
     @Override
-    public String flush() {
+    public String decorate() {
         String accumulatedString = templatesCount > 1 ? String.format("%s (x%s)", value, templatesCount) : value;
         return "string: " + accumulatedString;
     }
 
     @Override
-    public String accumulate(Message message) {
-        if (this.getClass() == message.getClass()) {
-            StringMessage oldMessage = (StringMessage) message;
-            if (value.equals(oldMessage.value)) {
-                templatesCount += oldMessage.templatesCount;
-                return null;
-            }
+    public void accumulate(Message message) {
+        if (isAccumulated(message)) {
+            templatesCount += ((StringMessage) message).templatesCount;
         }
-        return message.flush();
     }
+
+    @Override
+    public boolean isAccumulated(Message message) {
+        return message instanceof StringMessage && value.equals(((StringMessage) message).value);
+    }
+
 }

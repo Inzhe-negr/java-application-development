@@ -3,7 +3,7 @@ package com.acme.dbo.txlog;
 import com.acme.dbo.txlog.messages.*;
 
 public class Facade {
-    private static final LogService logService = new ConsoleLogService();
+    private static final LogService logService = new LogService();
 
     public static void log(boolean message) {
         logService.log(new BoolMessage(message));

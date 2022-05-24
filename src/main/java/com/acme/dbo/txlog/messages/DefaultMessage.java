@@ -1,15 +1,9 @@
 package com.acme.dbo.txlog.messages;
 
-public class ObjectMessage implements Message {
-    private final Object value;
-
-    public ObjectMessage(Object message) {
-        value = message;
-    }
-
+public class DefaultMessage implements Message {
     @Override
     public String decorate() {
-        return "reference: " + value;
+        return null;
     }
 
     @Override

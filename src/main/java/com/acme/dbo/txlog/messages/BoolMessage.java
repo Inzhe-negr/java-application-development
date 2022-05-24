@@ -1,6 +1,6 @@
 package com.acme.dbo.txlog.messages;
 
-public class BoolMessage extends AbstractMessage {
+public class BoolMessage implements Message {
     private final boolean value;
 
     public BoolMessage(boolean message) {
@@ -10,5 +10,15 @@ public class BoolMessage extends AbstractMessage {
     @Override
     public String decorate() {
         return "primitive: " + value;
+    }
+
+    @Override
+    public void accumulate(Message message) {
+
+    }
+
+    @Override
+    public boolean isAccumulated(Message message) {
+        return false;
     }
 }

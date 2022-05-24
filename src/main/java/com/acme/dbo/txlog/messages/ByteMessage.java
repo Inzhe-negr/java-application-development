@@ -1,6 +1,6 @@
 package com.acme.dbo.txlog.messages;
 
-public class ByteMessage extends AbstractMessage {
+public class ByteMessage implements Message {
     private final Byte value;
 
     public ByteMessage(Byte message) {
@@ -10,5 +10,15 @@ public class ByteMessage extends AbstractMessage {
     @Override
     public String decorate() {
         return "primitive: " + value;
+    }
+
+    @Override
+    public void accumulate(Message message) {
+
+    }
+
+    @Override
+    public boolean isAccumulated(Message message) {
+        return false;
     }
 }
