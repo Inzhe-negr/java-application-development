@@ -1,24 +1,15 @@
 package com.acme.dbo.txlog.messages;
 
-public class CharMessage implements Message {
+public class CharMessage extends AbstractMessage {
     private final char value;
 
     public CharMessage(char message) {
+        super("char: ");
         value = message;
     }
 
     @Override
     public String decorate() {
-        return "char: " + value;
-    }
-
-    @Override
-    public void accumulate(Message message) {
-
-    }
-
-    @Override
-    public boolean isAccumulated(Message message) {
-        return false;
+        return super.prefixDecorate(String.valueOf(value));
     }
 }

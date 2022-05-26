@@ -1,10 +1,11 @@
 package com.acme.dbo.txlog.messages;
 
-public class StringMessage implements Message {
+public class StringMessage extends AbstractMessage {
     private int templatesCount;
     private final String value;
 
     public StringMessage(String message) {
+        super("string: ");
         value = message;
         templatesCount = 1;
     }
@@ -12,18 +13,18 @@ public class StringMessage implements Message {
     @Override
     public String decorate() {
         String accumulatedString = templatesCount > 1 ? String.format("%s (x%s)", value, templatesCount) : value;
-        return "string: " + accumulatedString;
+        return super.prefixDecorate(String.valueOf(accumulatedString));
     }
 
     @Override
     public void accumulate(Message message) {
-        if (isAccumulated(message)) {
+        if (isAccumulatable(message)) {
             templatesCount += ((StringMessage) message).templatesCount;
         }
     }
 
     @Override
-    public boolean isAccumulated(Message message) {
+    public boolean isAccumulatable(Message message) {
         return message instanceof StringMessage && value.equals(((StringMessage) message).value);
     }
 

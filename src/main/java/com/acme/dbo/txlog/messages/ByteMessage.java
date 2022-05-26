@@ -1,24 +1,15 @@
 package com.acme.dbo.txlog.messages;
 
-public class ByteMessage implements Message {
+public class ByteMessage extends AbstractMessage {
     private final Byte value;
 
     public ByteMessage(Byte message) {
+        super("primitive: ");
         value = message;
     }
 
     @Override
     public String decorate() {
-        return "primitive: " + value;
-    }
-
-    @Override
-    public void accumulate(Message message) {
-
-    }
-
-    @Override
-    public boolean isAccumulated(Message message) {
-        return false;
+        return super.prefixDecorate(String.valueOf(value));
     }
 }

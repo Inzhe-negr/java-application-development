@@ -1,24 +1,15 @@
 package com.acme.dbo.txlog.messages;
 
-public class ObjectMessage implements Message {
+public class ObjectMessage extends AbstractMessage {
     private final Object value;
 
     public ObjectMessage(Object message) {
+        super("reference: ");
         value = message;
     }
 
     @Override
     public String decorate() {
-        return "reference: " + value;
-    }
-
-    @Override
-    public void accumulate(Message message) {
-
-    }
-
-    @Override
-    public boolean isAccumulated(Message message) {
-        return false;
+        return super.prefixDecorate(String.valueOf(value));
     }
 }

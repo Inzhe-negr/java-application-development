@@ -10,7 +10,7 @@ public class LogService {
     private Message accumulatedMessage = new DefaultMessage();
 
     public void log(Message message) {
-        if (accumulatedMessage.isAccumulated(message)) {
+        if (accumulatedMessage.isAccumulatable(message)) {
             accumulatedMessage.accumulate(message);
         } else {
             flush(message);

@@ -5,5 +5,5 @@ public interface Message {
 
     void accumulate(Message message);
 
-    boolean isAccumulated(Message message);
+    boolean isAccumulatable(Message message);
 }
