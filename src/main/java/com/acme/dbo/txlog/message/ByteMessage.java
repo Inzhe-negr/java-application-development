@@ -1,9 +1,9 @@
-package com.acme.dbo.txlog.messages;
+package com.acme.dbo.txlog.message;
 
-public class BoolMessage extends AbstractMessage {
-    private final boolean value;
+public class ByteMessage extends AbstractNonAccumulativeMessage {
+    private final Byte value;
 
-    public BoolMessage(boolean message) {
+    public ByteMessage(Byte message) {
         super("primitive: ");
         value = message;
     }

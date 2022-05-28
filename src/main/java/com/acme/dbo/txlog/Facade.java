@@ -1,9 +1,10 @@
 package com.acme.dbo.txlog;
 
-import com.acme.dbo.txlog.messages.*;
+import com.acme.dbo.txlog.message.*;
+import com.acme.dbo.txlog.saver.ConsoleSaver;
 
 public class Facade {
-    private static final LogService logService = new LogService();
+    private static final LogService logService = new LogService(new ConsoleSaver());
 
     public static void log(boolean message) {
         logService.log(new BoolMessage(message));
@@ -22,11 +23,11 @@ public class Facade {
     }
 
     public static void log(String message) {
-        logService.log(new StringMessage(message));
+        logService.log(new StrMessage(message));
     }
 
     public static void log(Object message) {
-        logService.log(new ObjectMessage(message));
+        logService.log(new ObjMessage(message));
     }
 
     public static void flush() {

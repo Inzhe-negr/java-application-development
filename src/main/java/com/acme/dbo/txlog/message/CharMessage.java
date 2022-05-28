@@ -1,6 +1,6 @@
-package com.acme.dbo.txlog.messages;
+package com.acme.dbo.txlog.message;
 
-public class CharMessage extends AbstractMessage {
+public class CharMessage extends AbstractNonAccumulativeMessage {
     private final char value;
 
     public CharMessage(char message) {

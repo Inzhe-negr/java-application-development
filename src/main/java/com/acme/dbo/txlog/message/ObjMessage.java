@@ -1,9 +1,9 @@
-package com.acme.dbo.txlog.messages;
+package com.acme.dbo.txlog.message;
 
-public class ObjectMessage extends AbstractMessage {
+public class ObjMessage extends AbstractNonAccumulativeMessage {
     private final Object value;
 
-    public ObjectMessage(Object message) {
+    public ObjMessage(Object message) {
         super("reference: ");
         value = message;
     }

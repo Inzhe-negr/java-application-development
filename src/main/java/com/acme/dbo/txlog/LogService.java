@@ -1,17 +1,20 @@
 package com.acme.dbo.txlog;
 
-import com.acme.dbo.txlog.messages.DefaultMessage;
-import com.acme.dbo.txlog.messages.Message;
-import com.acme.dbo.txlog.printers.ConsolePrinter;
-import com.acme.dbo.txlog.printers.LogPrinter;
+import com.acme.dbo.txlog.message.DefaultMessage;
+import com.acme.dbo.txlog.message.Message;
+import com.acme.dbo.txlog.saver.LogSaver;
 
 public class LogService {
-    private final LogPrinter printer = new ConsolePrinter();
+    private final LogSaver logSaver;
     private Message accumulatedMessage = new DefaultMessage();
 
+    public LogService(LogSaver logSaver) {
+        this.logSaver = logSaver;
+    }
+
     public void log(Message message) {
-        if (accumulatedMessage.isAccumulatable(message)) {
-            accumulatedMessage.accumulate(message);
+        if (accumulatedMessage.isAccumulative(message)) {
+            accumulatedMessage = accumulatedMessage.accumulate(message);
         } else {
             flush(message);
         }
@@ -22,9 +25,7 @@ public class LogService {
     }
 
     private void flush(Message message) {
-        if (!(accumulatedMessage instanceof DefaultMessage)) {
-            printer.print(accumulatedMessage.decorate());
-        }
+        logSaver.save(accumulatedMessage.decorate());
         accumulatedMessage = message;
     }
 }
