@@ -32,7 +32,8 @@ public class LogService {
             }
         } catch (Exception e) {
             throw new LogSaveException("My exception raised", e);
+        } finally {
+            accumulatedMessage = message;
         }
-        accumulatedMessage = message;
     }
 }

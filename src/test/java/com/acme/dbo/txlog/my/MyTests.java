@@ -4,6 +4,7 @@ import com.acme.dbo.txlog.Facade;
 import com.acme.dbo.txlog.SysoutCaptureAndAssertionAbility;
 import com.acme.dbo.txlog.saver.LogSaveException;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,11 +25,11 @@ public class MyTests implements SysoutCaptureAndAssertionAbility {
     //endregion
 
 
-    @Test(expected = LogSaveException.class)
-    public void shouldGetErrorWhenMessageIsNull() throws LogSaveException {
-        //region when
-        Facade.log(null);
-        Facade.flush();
-        //endregion
+    @Test //(expected = LogSaveException.class)
+    public void shouldGetErrorWhenMessageIsNull() {
+        Assert.assertThrows(LogSaveException.class, () -> {
+            Facade.log(null);
+            Facade.flush();
+        });
     }
 }
