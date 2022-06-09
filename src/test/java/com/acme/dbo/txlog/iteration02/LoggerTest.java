@@ -2,6 +2,7 @@ package com.acme.dbo.txlog.iteration02;
 
 import com.acme.dbo.txlog.Facade;
 import com.acme.dbo.txlog.SysoutCaptureAndAssertionAbility;
+import com.acme.dbo.txlog.saver.LogSaveException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 //    TODO: implement Logger solution to match specification as tests
 
     @Test
-    public void shouldLogSequentIntegersAsSum() throws IOException {
+    public void shouldLogSequentIntegersAsSum() throws IOException, LogSaveException {
         //region when
         Facade.log("str 1");
         Facade.log(1);
@@ -45,7 +46,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogCorrectlyIntegerOverflowWhenSequentIntegers() {
+    public void shouldLogCorrectlyIntegerOverflowWhenSequentIntegers() throws LogSaveException {
         //region when
         Facade.log("str 1");
         Facade.log(10);
@@ -65,11 +66,11 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogCorrectlyByteOverflowWhenSequentBytes() {
+    public void shouldLogCorrectlyByteOverflowWhenSequentBytes() throws LogSaveException {
         //region when
         Facade.log("str 1");
         Facade.log((byte) 10);
-        Facade.log((byte) Byte.MAX_VALUE);
+        Facade.log(Byte.MAX_VALUE);
         Facade.log("str 2");
         Facade.log(0);
         Facade.flush();
@@ -85,7 +86,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException {
+    public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException, LogSaveException {
         //region when
         Facade.log("str 1");
         Facade.log("str 2");

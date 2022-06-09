@@ -1,5 +1,7 @@
 package com.acme.dbo.txlog.message;
 
+import java.util.Objects;
+
 public class StrMessage extends AbstractDecoratedMessage {
     private final int templatesCount;
     private final String value;
@@ -18,6 +20,11 @@ public class StrMessage extends AbstractDecoratedMessage {
     public String decorate() {
         String accumulatedString = templatesCount > 1 ? String.format("%s (x%s)", value, templatesCount) : value;
         return super.prefixDecorate(String.valueOf(accumulatedString));
+    }
+
+    @Override
+    public boolean isEmptyValue() {
+        return Objects.isNull(value);
     }
 
     @Override

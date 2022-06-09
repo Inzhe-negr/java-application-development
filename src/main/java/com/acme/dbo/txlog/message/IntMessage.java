@@ -25,6 +25,11 @@ public class IntMessage extends AbstractDecoratedMessage {
         return super.prefixDecorate(String.valueOf(value));
     }
 
+    @Override
+    public boolean isEmptyValue() {
+        return false;
+    }
+
     private int getIntMessageValue(Message message) {
         return ((IntMessage) message).value;
     }

@@ -1,9 +1,9 @@
 package com.acme.dbo.txlog.message;
 
 public class ByteMessage extends AbstractNonAccumulativeMessage {
-    private final Byte value;
+    private final byte value;
 
-    public ByteMessage(Byte message) {
+    public ByteMessage(byte message) {
         super("primitive: ");
         value = message;
     }

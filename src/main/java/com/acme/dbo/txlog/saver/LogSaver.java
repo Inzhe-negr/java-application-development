@@ -1,5 +1,7 @@
 package com.acme.dbo.txlog.saver;
 
+import com.acme.dbo.txlog.message.Message;
+
 public interface LogSaver {
-    void save(String decoratedMessage);
+    void save(Message message) throws LogSaveException;
 }

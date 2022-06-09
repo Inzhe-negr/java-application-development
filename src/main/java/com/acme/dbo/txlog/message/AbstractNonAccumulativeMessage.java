@@ -14,4 +14,9 @@ public abstract class AbstractNonAccumulativeMessage extends AbstractDecoratedMe
     public boolean isAccumulative(Message message) {
         return false;
     }
+
+    @Override
+    public boolean isEmptyValue() {
+        return false;
+    }
 }

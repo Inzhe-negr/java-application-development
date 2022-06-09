@@ -2,6 +2,7 @@ package com.acme.dbo.txlog.iteration01;
 
 import com.acme.dbo.txlog.Facade;
 import com.acme.dbo.txlog.SysoutCaptureAndAssertionAbility;
+import com.acme.dbo.txlog.saver.LogSaveException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +26,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     //endregion
 
     @Test
-    public void shouldLogInteger() throws IOException {
+    public void shouldLogInteger() throws IOException, LogSaveException {
         //region when
         Facade.log(1);
         Facade.flush();
@@ -42,7 +43,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogByte() throws IOException {
+    public void shouldLogByte() throws IOException, LogSaveException {
         //region when
         Facade.log((byte) 1);
         Facade.log((byte) 0);
@@ -62,7 +63,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     //  TODO: implement Logger solution to match specification as tests
 
     @Test
-    public void shouldLogChar() throws IOException {
+    public void shouldLogChar() throws IOException, LogSaveException {
         //region when
         Facade.log('a');
         Facade.log('b');
@@ -77,7 +78,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogString() throws IOException {
+    public void shouldLogString() throws IOException, LogSaveException {
         //region when
         Facade.log("test string 1");
         Facade.log("other str");
@@ -92,7 +93,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogBoolean() throws IOException {
+    public void shouldLogBoolean() throws IOException, LogSaveException {
         //region when
         Facade.log(true);
         Facade.log(false);
@@ -107,7 +108,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
     @Test
-    public void shouldLogReference() throws IOException {
+    public void shouldLogReference() throws IOException, LogSaveException {
         //region when
         Facade.log(new Object());
         Facade.flush();
